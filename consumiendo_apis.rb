@@ -25,17 +25,54 @@ class Mashable
 	include HTTParty
 	base_uri 'http://mashable.com/stories.json'
 	def print
-		notice= self.class.get('')
+		puts "\tNoticias de Mashable: hot"
+		notice = self.class.get('')
 		notice["hot"].each do |feed|
-			puts "#{feed["title"]}"
-			puts "#{feed["author"]}"
-			puts "#{feed["post_date"]}"
-			puts "#{feed["link"]}"
+			puts "Title: #{feed["title"]}"
+			puts "Author: #{feed["author"]}"
+			puts "Date: #{feed["post_date"]}"
+			puts "Link: #{feed["link"]}"
+		end
+
+	end
+end
+
+class Digg
+	include HTTParty
+	base_uri 'http://digg.com/api/news/popular.json'
+	def print
+		puts "\tNoticias de Digg"
+		notice = self.class.get('')
+		#notice2 = notice["data"]["feed"][0]["content"]["title_alt"]
+		notice2 = notice["data"]["feed"]
+		notice2.each do |feed|
+			puts "Title: #{feed["content"]["title_alt"]}"
+			puts "Author: #{feed["content"]["author"]}"
+			puts "Link: #{feed["content"]["url"]}"
+			puts "date:#{Time.at(feed["date_published"])}"
 		end
 	end
-	
-
 end
-notice = Mashable.new
-notice.print
+
+class Reddit
+	include HTTParty
+	base_uri 'http://www.reddit.com/.json'
+	def print
+		puts "\tNoticias de Reddit"
+		notice = self.class.get('')
+		notice2 = notice["data"]["children"]
+		notice2.each do |feed|
+			puts "Title: #{feed["data"]["title"]}"
+			puts "Author: #{feed["data"]["author"]}"
+			puts "Date: #{Time.at(feed["data"]["created_utc"])}"
+			puts "Link: #{feed["data"]["url"]}"
+		end
+	end
+end
+# notice = Mashable.new
+# notice.print
+# notice2 = Digg.new
+# notice2.print
+notice3 = Reddit.new
+notice3.print
 
