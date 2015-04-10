@@ -32,6 +32,7 @@ class Mashable
 		puts "\tNoticias de Mashable: hot"
 		notice = self.class.get('')
 		notice["hot"].each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Title: #{feed["title"]}"
 			puts "Author: #{feed["author"]}"
 			puts "Date: #{feed["post_date"]}"
@@ -43,6 +44,7 @@ class Mashable
 		puts "\tTitulos de Mashable: hot"
 		notice = self.class.get('')
 		notice["hot"].each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Title: #{feed["title"]}"
 		end
 	end
@@ -51,6 +53,7 @@ class Mashable
 		puts "\tAutores de Mashable: hot"
 		notice = self.class.get('')
 		notice["hot"].each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Autrhor: #{feed["author"]}"
 			end
 	end
@@ -59,6 +62,7 @@ class Mashable
 		puts "\tFechas de Mashable: hot"
 		notice = self.class.get('')
 		notice["hot"].each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Date: #{feed["post_date"]}"
 		end
 	end
@@ -67,6 +71,7 @@ class Mashable
 		puts "\tLinks de Mashable: hot"
 		notice = self.class.get('')
 		notice["hot"].each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Link: #{feed["link"]}"
 		end
 		
@@ -83,6 +88,7 @@ class Digg < Mashable
 		#notice2 = notice["data"]["feed"][0]["content"]["title_alt"]
 		notice2 = notice["data"]["feed"]
 		notice2.each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Title: #{feed["content"]["title_alt"]}"
 			puts "Author: #{feed["content"]["author"]}"
 			puts "Date:#{Time.at(feed["date_published"])}"
@@ -95,6 +101,7 @@ class Digg < Mashable
 		notice = self.class.get('')
 		notice2 = notice["data"]["feed"]
 		notice2.each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Title: #{feed["content"]["title_alt"]}"
 		end
 	end
@@ -104,6 +111,7 @@ class Digg < Mashable
 		notice = self.class.get('')
 		notice2 = notice["data"]["feed"]
 		notice2.each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Author: #{feed["content"]["author"]}"
 		end
 	end
@@ -113,6 +121,7 @@ class Digg < Mashable
 		notice = self.class.get('')
 		notice2 = notice["data"]["feed"]
 		notice2.each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Date:#{Time.at(feed["date_published"])}"
 		end
 	end
@@ -122,6 +131,7 @@ class Digg < Mashable
 		notice = self.class.get('')
 		notice2 = notice["data"]["feed"]
 		notice2.each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Link: #{feed["content"]["url"]}"
 		end
 		
@@ -137,6 +147,7 @@ class Reddit < Digg
 		notice = self.class.get('')
 		notice2 = notice["data"]["children"]
 		notice2.each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Title: #{feed["data"]["title"]}"
 			puts "Author: #{feed["data"]["author"]}"	
 			puts "Date: #{Time.at(feed["data"]["created_utc"])}"
@@ -149,6 +160,7 @@ class Reddit < Digg
 		notice = self.class.get('')
 		notice2 = notice["data"]["children"]
 		notice2.each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Title: #{feed["data"]["title"]}"
 		end
 	end
@@ -158,6 +170,7 @@ class Reddit < Digg
 		notice = self.class.get('')
 		notice2 = notice["data"]["children"]
 		notice2.each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Author: #{feed["data"]["author"]}"	
 		end
 	end
@@ -167,6 +180,7 @@ class Reddit < Digg
 		notice = self.class.get('')
 		notice2 = notice["data"]["children"]
 		notice2.each do |feed|	
+			puts "===========================================================================".colorize(:green)
 			puts "Date: #{Time.at(feed["data"]["created_utc"])}"
 		end
 	end
@@ -176,72 +190,148 @@ class Reddit < Digg
 		notice = self.class.get('')
 		notice2 = notice["data"]["children"]
 		notice2.each do |feed|
+			puts "===========================================================================".colorize(:green)
 			puts "Link: #{feed["data"]["url"]}"
 		end
 		
 	end
 end
 
+class Mi_api < Reddit
+	def all_notice
+		$notice1.print
+		$notice2.print
+		$notice3.print
+	end
+	def noti_mashable
+		$notice1.print
+	end
+	def mashable_titles
+		$notice1.titles
+	end
+	def mashable_authors
+		$notice1.authors
+	end
+	def mashable_dates
+		$notice1.dates
+	end
+	def mashable_links
+		$notice1.links
+	end
 
+	def noti_digg
+		$notice2.print
+	end
+	def digg_titles
+		$notice2.titles
+	end
+	def digg_authors
+		$notice2.authors
+	end
+	def digg_dates
+		$notice2.dates
+	end
+	def digg_links
+		$notice2.links
+	end
 
+	def noti_reddit
+		$notice3.print
+	end
+	def reddit_titles
+		$notice3.titles
+	end
+	def reddit_authors
+		$notice3.authors
+	end
+	def reddit_dates
+		$notice3.dates
+	end
+	def reddit_links
+		$notice3.links
+	end
+end
 
-
-
-# class Mi_api < Reddit
-# 	def all_notice
-# 		$notice1.print
-# 		$notice2.print
-# 		$notice3.print
-# 	end
-# 	def noti_mashable
-# 		$notice1.print
-# 	end
-# 	def noti_digg
-# 		$notice2.print
-# 	end
-# 	def noti_reddit
-# 		$notice3.print
-# 	end
-# 	def mashable_title
-# 		$notice1.titles
-		
-# 	end
-
-# end
-
-# def main
-# 	$notice1 = Mashable.new
-# 	$notice2 = Digg.new
-# 	$notice3 = Reddit.new
-# 	mi_api = Mi_api.new 
-# 	while true
-# 		puts "Seleccioone de que lugar quiere ver las noticias:\n\t1. Mashable.\n\t2. Digg.\n\t3. Reddit.\n\t4. Todas."
-# 		option = gets.chomp.to_s
-# 		if !["1","2","3","4"].include?(option)
-# 			puts "Por favor elija una opcion valida\n\tRecuerde que solo hay 4 opciones validas"	
-# 			redo
-# 		end
-# 		break
-# 	end
-# 	case option
-# 		when "1" 
-# 			while true
-# 				puts "Que dato de las noticias desea ver?\n\t1. Titulo.\n\t2. Autor.\n\t3. Fecha.\n\t4. Link.\n\t5. Todos."
-# 				option = gets.chomp.to_s
-# 				if !["1","2","3","4","5"].include?(option)
-# 					puts "Debes seleccionar uno opcion valida del 1 al 5"
-# 					redo
-# 				end
-# 				break
-# 			end
-# 			if option == 1
-# 				mi_api.mashable_title
-				
-# 			end
-# 		when 2
-# 		when 3
-# 		when 4 
-# 	end
-#end
-$notice2=Reddit.new
-$notice2.dates
+def main
+	$notice1 = Mashable.new
+	$notice2 = Digg.new
+	$notice3 = Reddit.new
+	mi_api = Mi_api.new 
+	while true
+		puts "Seleccioone de que lugar quiere ver las noticias:\n\t1. Mashable.\n\t2. Digg.\n\t3. Reddit.\n\t4. Todas."
+		option = gets.chomp.to_s
+		if !["1","2","3","4"].include?(option)
+			puts "Por favor elija una opcion valida\n\tRecuerde que solo hay 4 opciones validas"	
+			redo
+		end
+		break
+	end
+	case option
+		when "1" 
+			while true
+				puts "Que dato de las noticias desea ver?\n\t1. Titulo.\n\t2. Autor.\n\t3. Fecha.\n\t4. Link.\n\t5. Todos."
+				option = gets.chomp.to_s
+				if !["1","2","3","4","5"].include?(option)
+					puts "Debes seleccionar uno opcion valida del 1 al 5"
+					redo
+				end
+				break
+			end
+			if option == "1"
+				mi_api.mashable_titles
+			elsif option == "2"
+				mi_api.mashable_authors
+			elsif option == "3"
+				mi_api.mashable_dates
+			elsif option == "4"
+				mi_api.mashable_links
+			else
+				mi_api.noti_mashable			
+			end
+		when "2"
+			while true
+				puts "Que dato de las noticias desea ver?\n\t1. Titulo.\n\t2. Autor.\n\t3. Fecha.\n\t4. Link.\n\t5. Todos."
+				option = gets.chomp.to_s
+				if !["1","2","3","4","5"].include?(option)
+					puts "Debes seleccionar uno opcion valida del 1 al 5"
+					redo
+				end
+				break
+			end
+			if option == "1"
+				mi_api.digg_titles
+			elsif option == "2"
+				mi_api.digg_authors
+			elsif option == "3"
+				mi_api.digg_dates
+			elsif option == "4"
+				mi_api.digg_links
+			else
+				mi_api.noti_digg			
+			end
+		when "3"
+			while true
+				puts "Que dato de las noticias desea ver?\n\t1. Titulo.\n\t2. Autor.\n\t3. Fecha.\n\t4. Link.\n\t5. Todos."
+				option = gets.chomp.to_s
+				if !["1","2","3","4","5"].include?(option)
+					puts "Debes seleccionar uno opcion valida del 1 al 5"
+					redo
+				end
+				break
+			end
+			if option == "1"
+				mi_api.reddit_titles
+			elsif option == "2"
+				mi_api.reddit_authors
+			elsif option == "3"
+				mi_api.reddit_dates
+			elsif option == "4"
+				mi_api.reddit_links
+			else
+				mi_api.noti_reddit			
+			end
+		when "4" 
+			mi_api.all_notice
+	end
+end
+main
