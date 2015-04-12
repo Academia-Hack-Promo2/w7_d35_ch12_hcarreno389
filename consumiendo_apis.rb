@@ -191,7 +191,7 @@ class Reddit < Digg
 		notice2 = notice["data"]["children"]
 		notice2.each do |feed|
 			puts "===========================================================================".colorize(:green)
-			puts "Link: #{feed["data"]["url"]}"
+			puts "Link: #{feed["data"]["url"] + feedfeed["data"]["domain"]}"
 		end
 		
 	end
