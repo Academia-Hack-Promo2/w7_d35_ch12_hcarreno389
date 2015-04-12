@@ -151,7 +151,7 @@ class Reddit < Digg
 			puts "Title: #{feed["data"]["title"]}"
 			puts "Author: #{feed["data"]["author"]}"	
 			puts "Date: #{Time.at(feed["data"]["created_utc"])}"
-			puts "Link: #{feed["data"]["url"]}"
+			puts "Link: #{feed["data"]["url"] + feedfeed["data"]["domain"]}"
 		end
 	end
 	def titles
